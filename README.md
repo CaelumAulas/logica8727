@@ -23,6 +23,10 @@ Material de apoio para o curso de Lógica de Programação com JavaScript.
 [Guia JavaScript - MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 
+Dica do aluno Gabriel:
+[devdocs.io](https://devdocs.io/javascript/)
+
+
 ## Base da Programação:
 - Armazenar dados - Variáveis
 - Armazenar e executar comandos - Funções
