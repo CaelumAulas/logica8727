@@ -3,19 +3,15 @@
 
 <h2>Uber</h2>
 <script src="js/pegaNumero.js"></script>
-<script src="http://fce20d2e.ngrok.io/libRelogio.js"></script>
+<script src="js/libRelogio.js"></script>
 
 <script>
-  mensagem = "Qual a distancia?"
-  var distancia = pegaNumero()
-  mensagem = "Qual a velocidade média?"
-  var velocidadeMedia = pegaNumero()
+  var distancia = pegaNumero("Qual a distancia?")
+  var velocidadeMedia = pegaNumero("Qual a velocidade média?")
   var tempoEmHoras = distancia/velocidadeMedia
   var tempoEmMinutos = tempoEmHoras * 60
   var totalUber = 2 + distancia*1.4 + tempoEmMinutos*0.26
-
-  tempo = tempoEmMinutos
-  var tempoformatado = formataRelogio()
+  var tempoformatado = formataRelogio(tempoEmMinutos)
 
   document.write(`
     Total: R$ ${totalUber.toFixed(2).replace(".",",")}
@@ -26,9 +22,9 @@
 
 <h2>Carro</h2>
 <script>
-  var autonomia = parseFloat(prompt("Qual a autonomia do carro?").replace(",","."))
-  var precoLitroGasolina = parseFloat(prompt("Qual o preço do litro da gasolina?").replace(",","."))
-  var totalEstacionamento = parseFloat(prompt("Quanto gasta com Estacionamento?").replace(",","."))
+  var autonomia = pegaNumero("Qual a autonomia do carro?")
+  var precoLitroGasolina = pegaNumero("Qual o preço do litro da gasolina?")
+  var totalEstacionamento = pegaNumero("Quanto gasta com Estacionamento?")
   var totalGasolina = (distancia/autonomia)*precoLitroGasolina
   var totalCarro = totalGasolina+totalEstacionamento
 

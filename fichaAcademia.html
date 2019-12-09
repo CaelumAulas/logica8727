@@ -1,0 +1,75 @@
+<meta charset="utf-8">
+<h1>Cadastro da Academia</h1>
+
+<p>Nome</p>
+<input type="text" id="campoNome" autofocus>
+
+<p>Peso</p>
+<input type="text" id="campoPeso">
+
+<p>Altura</p>
+<input type="text" id="campoAltura">
+
+<p>Data de Nascimento</p>
+<input type="text" id="campoDataDeNascimento">
+
+<br>
+<input type="checkbox" id="campoProblemasCardiacos">
+Tem problemas cardíacos
+
+<br><br>
+<button onclick="cadastrar()">Cadastrar</button>
+
+<script src="js/libIdade.js"></script>
+<script src="js/libBrasil.js"></script>
+<script src="js/mostra.js"></script>
+
+<script>
+  var contadora = 0
+  function cadastrar() {
+    //contadora = contadora + 1
+    contadora++
+    if (contadora == 1) {
+      mostra("<h2>Fichas</h2>")
+    }
+
+    var nome = campoNome.value
+    var peso = parseFloatBrasil(campoPeso.value)
+    var altura = parseFloatBrasil(campoAltura.value)
+    var dataDeNascimento = campoDataDeNascimento.value
+    var diaMesAnoNascimento = dataDeNascimento.split("/")
+    var diaNascimento = diaMesAnoNascimento[0]
+    var mesNascimento = diaMesAnoNascimento[1]
+    var anoNascimento = diaMesAnoNascimento[2]
+    var idade = calculaIdade(diaNascimento,mesNascimento,anoNascimento)
+
+    var temProblemasCardiacos = campoProblemasCardiacos.checked
+    var textoProblemasCardiacos
+    var ehCrianca = idade < 16
+
+    if (temProblemasCardiacos || ehCrianca) {
+      textoProblemasCardiacos = "Necessita de acompanhamento médico"
+    }
+
+    if (!temProblemasCardiacos && !ehCrianca) {
+      textoProblemasCardiacos = "NÃO necessita de acompanhamento médico"
+    }
+
+    mostra(`
+      <hr>
+      Ficha ${contadora}
+      <hr>
+      Nome: ${nome}
+      <br>
+      Peso: ${peso.toFixed(1).replace(".",",")} kg
+      <br>
+      Altura: ${altura.toFixed(2).replace(".",",")} m
+      <br>
+      Data de Nascimento: ${dataDeNascimento}
+      <br>
+      Idade: ${idade} anos
+      <br>
+      ${textoProblemasCardiacos}
+    `)
+  }
+</script>
