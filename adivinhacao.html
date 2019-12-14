@@ -1,0 +1,21 @@
+<meta charset="utf-8">
+<h1>Jogo de adivinhação</h1>
+<button onclick="jogar()">Jogar</button>
+
+<script src="js/pegaNumero.js"></script>
+<script src="js/mostra.js"></script>
+
+<script>
+  var numeroDaJogada = 0
+  function jogar() {
+    numeroDaJogada++
+    var numeroMisterioso = pegaNumero("Digite o número misterioso!")
+    var chute = pegaNumero("Digite seu chute!")
+
+    if(chute == numeroMisterioso) {
+      mostra(`Jogo ${numeroDaJogada}: Você acertou!`)
+    } else {
+      mostra("Jogo " + numeroDaJogada + ": Você errou!")
+    }
+  }
+</script>

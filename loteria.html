@@ -1,0 +1,49 @@
+<meta charset="utf-8">
+<h1>Loteria</h1>
+Quantos números quer sortear?
+<input type="text" id="campoQuantidadeNumeros">
+<br><br>
+<button onclick="jogar()">Jogar</button>
+
+<script src="js/pegaNumero.js"></script>
+<script src="js/mostra.js"></script>
+<script src="js/libBrasil.js"></script>
+
+<script>
+  var numeroDaJogada = 0
+  function jogar() {
+    numeroDaJogada++
+    var quantidadeNumeros=parseFloatBrasil(campoQuantidadeNumeros.value)
+    var listaNumerosMisteriosos = []
+
+    for(var c = 0 ; c < quantidadeNumeros ; c = c + 1){
+      var numeroMisterioso = parseInt(Math.random()*100)
+      console.log(numeroMisterioso)
+      listaNumerosMisteriosos.push(numeroMisterioso)
+    }
+
+    var chute = pegaNumero("Digite seu chute! De 0 a 100")
+    var numeroDeTentativas = 0
+    while(chute < 0 || chute > 100 || isNaN(chute)) {
+      numeroDeTentativas++
+      if(numeroDeTentativas == 3) {
+        alert("Game Over")
+        mostra(`Jogo ${numeroDaJogada}: Game Over!!!`)
+        return
+      }
+      chute = pegaNumero("Número Inválido. Digite novamente!")
+    }
+
+    if(listaNumerosMisteriosos.includes(chute)) {
+      mostra(`
+        Jogo ${numeroDaJogada}: Você acertou!
+        Os números eram ${listaNumerosMisteriosos}.
+      `)
+    } else {
+      mostra(`
+        Jogo ${numeroDaJogada}: Você errou!
+        Os números eram ${listaNumerosMisteriosos}.
+      `)
+    }
+  }
+</script>
